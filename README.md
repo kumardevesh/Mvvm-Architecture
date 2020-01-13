@@ -1,4 +1,4 @@
 # Mvvm-Architecture
 
-Tech Stack 
+Tech Stack :
 Kotlin , RxJava , Mvvm , Dagger , Mockito , Androidx arch components 

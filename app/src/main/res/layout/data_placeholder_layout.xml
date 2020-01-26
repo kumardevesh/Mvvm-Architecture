@@ -33,16 +33,14 @@
           app:layout_constraintTop_toTopOf="parent"
           app:layout_constraintLeft_toRightOf="@id/iv_avatar"/>
 
-    <View android:layout_width="0dp"
+    <View android:layout_width="260dp"
           android:layout_height="8dp"
           android:layout_marginLeft="16dp"
           android:layout_marginRight="16dp"
           android:layout_marginTop="8dp"
           android:background="@drawable/rect_gray"
           app:layout_constraintTop_toBottomOf="@+id/tv_author_name"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintLeft_toRightOf="@+id/iv_avatar"
-    />
+          app:layout_constraintLeft_toRightOf="@+id/iv_avatar"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import javax.inject.Inject
 
-class ListViewModel @Inject
+class RepoListViewModel @Inject
 constructor(
     private val repoRepository: RepoRepository,
     private val schedulerProvider: RxSingleSchedulers

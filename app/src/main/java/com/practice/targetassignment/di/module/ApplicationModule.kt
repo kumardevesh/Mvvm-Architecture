@@ -2,8 +2,10 @@ package com.practice.targetassignment.di.module
 
 import android.app.Application
 import android.content.Context
+import com.practice.targetassignment.di.util.RxSingleSchedulers
 import com.practice.targetassignment.repository.RepoService
 import com.practice.targetassignment.util.SchedulerProvider
+import com.practice.targetassignment.util.SharedPrefUtil
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -33,7 +35,6 @@ class ApplicationModule {
             .build()
     }
 
-
     @Singleton
     @Provides
     internal fun provideRetrofitService(retrofit: Retrofit): RepoService {
@@ -41,9 +42,14 @@ class ApplicationModule {
     }
 
     @Provides
+    fun providesScheduler(): RxSingleSchedulers {
+        return RxSingleSchedulers.DEFAULT
+    }
+
+    @Provides
     @Singleton
-    internal fun provideSchedulers(): SchedulerProvider {
-        return SchedulerProvider()
+    internal fun providePrefManager(context: Context): SharedPrefUtil {
+        return SharedPrefUtil(context)
     }
 
 }

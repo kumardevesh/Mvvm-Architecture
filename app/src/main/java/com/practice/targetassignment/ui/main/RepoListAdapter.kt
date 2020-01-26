@@ -10,11 +10,7 @@ import com.practice.targetassignment.model.Repo
 class RepoListAdapter(private val repoSelectedListener: RepoSelectedListener) :
     RecyclerView.Adapter<RepoItemViewHolder>() {
 
-
     private val data = ArrayList<Repo>()
-    private val sortedData = ArrayList<Repo>()
-    private var sortingEnabled: Boolean = false
-    private var searchData: ArrayList<Repo>? = null
 
 
     override fun onCreateViewHolder(@NonNull parent: ViewGroup, viewType: Int): RepoItemViewHolder {
@@ -23,38 +19,16 @@ class RepoListAdapter(private val repoSelectedListener: RepoSelectedListener) :
     }
 
     override fun onBindViewHolder(holder: RepoItemViewHolder, position: Int) {
-        val data = searchData?.get(position) ?: if (sortingEnabled) sortedData.get(position) else data.get(position)
-        holder.bindTo(data)
-
+        holder.bindTo(data.get(position))
     }
 
     override fun getItemCount(): Int {
-        return if (searchData == null) data.size else searchData?.size ?: 0
+        return data.size
     }
 
-    fun addData(repoList: List<Repo>) {
+    fun addData(list: List<Repo>) {
         data.clear()
-        data.addAll(repoList)
-        sortedData.clear()
-        sortedData.addAll(repoList)
-        sortedData.sortBy { it.name }
+        data.addAll(list)
         notifyDataSetChanged()
     }
-
-    fun toggleSorting() {
-        sortingEnabled = !sortingEnabled
-        notifyDataSetChanged()
-    }
-
-    fun showSearchResult(query: String?) {
-        if (query.isNullOrBlank()) {
-            searchData = null
-        } else {
-            searchData = ArrayList(data.filter {
-                (it.userName?.contains(query, true) == true || it.name?.contains(query, true) == true)
-            })
-        }
-        notifyDataSetChanged()
-    }
-
 }

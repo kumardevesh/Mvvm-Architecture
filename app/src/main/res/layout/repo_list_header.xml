@@ -1,0 +1,26 @@
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        cardElevation="2dp"
+        android:background="@android:color/white">
+
+
+    <TextView
+            android:id="@+id/tv_trending"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/trending"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:lineSpacingExtra="1sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/black"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_marginTop="16dp"
+          android:layout_gravity="bottom"
+          android:background="@color/underlineGray"/>
+</androidx.cardview.widget.CardView>

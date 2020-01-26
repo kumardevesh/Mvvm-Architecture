@@ -10,7 +10,8 @@ import com.practice.targetassignment.model.Repo
 class RepoListAdapter(private val repoSelectedListener: RepoSelectedListener) :
     RecyclerView.Adapter<RepoItemViewHolder>() {
 
-    private val data = ArrayList<Repo>()
+    private val repoList = ArrayList<Repo>()
+    private var expandedPosition: Int = -1
 
 
     override fun onCreateViewHolder(@NonNull parent: ViewGroup, viewType: Int): RepoItemViewHolder {
@@ -19,16 +20,29 @@ class RepoListAdapter(private val repoSelectedListener: RepoSelectedListener) :
     }
 
     override fun onBindViewHolder(holder: RepoItemViewHolder, position: Int) {
-        holder.bindTo(data.get(position))
+        holder.bindTo(repoList.get(position))
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return repoList.size
     }
 
     fun addData(list: List<Repo>) {
-        data.clear()
-        data.addAll(list)
+        repoList.clear()
+        repoList.addAll(list)
         notifyDataSetChanged()
+    }
+
+    fun updateExpandedPosition(position: Int) {
+        if (expandedPosition == position) {
+            expandedPosition = -1
+        } else if (expandedPosition != -1) {
+            repoList.get(expandedPosition).isExpandedState = false
+            notifyItemChanged(expandedPosition)
+            expandedPosition = position
+        } else {
+            expandedPosition = position
+        }
+
     }
 }

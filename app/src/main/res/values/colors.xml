@@ -8,5 +8,8 @@
     <color name="textDarkGray">#555555</color>
     <color name="underlineGray">#DDDDDD</color>
     <color name="circular_background">#dddddd</color>
+    <color name="bglightGray">#EEEEEE</color>
+    <color name="green">#6AA121</color>
+
 
 </resources>

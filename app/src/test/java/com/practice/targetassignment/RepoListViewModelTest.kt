@@ -9,7 +9,7 @@ import com.practice.targetassignment.di.util.RxSingleSchedulers
 import com.practice.targetassignment.model.ApiResponseState
 import com.practice.targetassignment.model.Repo
 import com.practice.targetassignment.repository.RepoRepository
-import com.practice.targetassignment.ui.main.ListViewModel
+import com.practice.targetassignment.ui.main.RepoListViewModel
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
@@ -24,7 +24,7 @@ import java.net.UnknownHostException
 
 
 @RunWith(MockitoJUnitRunner::class)
-class ListViewModelTest {
+class RepoListViewModelTest {
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
@@ -38,7 +38,7 @@ class ListViewModelTest {
     @Mock
     lateinit var lifecycleOwner: LifecycleOwner
 
-    lateinit var listViewModel: ListViewModel
+    lateinit var repoListViewModel: RepoListViewModel
 
     lateinit var lifecycle: Lifecycle
 
@@ -47,8 +47,8 @@ class ListViewModelTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         lifecycle = LifecycleRegistry(lifecycleOwner)
-        listViewModel = ListViewModel(repoRepository, RxSingleSchedulers.TEST_SCHEDULER)
-        listViewModel.getLoadingState().observeForever(apiStateObserver)
+        repoListViewModel = RepoListViewModel(repoRepository, RxSingleSchedulers.TEST_SCHEDULER)
+        repoListViewModel.getLoadingState().observeForever(apiStateObserver)
     }
 
 
@@ -57,7 +57,7 @@ class ListViewModelTest {
         Mockito.`when`(this.repoRepository.getRepositories()).thenAnswer {
             return@thenAnswer Single.just(listOf(getDummyRepo()))
         }
-        listViewModel.fetchRepos()
+        repoListViewModel.fetchRepos()
         verify(apiStateObserver).onChanged(ApiResponseState.LOADING)
         verify(apiStateObserver).onChanged(ApiResponseState.COMPLETED)
     }
@@ -70,7 +70,7 @@ class ListViewModelTest {
         Mockito.`when`(this.repoRepository.getCachedRepos()).thenAnswer {
             return@thenAnswer listOf(getDummyRepo())
         }
-        listViewModel.fetchRepos()
+        repoListViewModel.fetchRepos()
         verify(apiStateObserver).onChanged(ApiResponseState.LOADING)
         verify(apiStateObserver).onChanged(ApiResponseState.CACHED_RESULT)
     }
@@ -86,7 +86,7 @@ class ListViewModelTest {
             return@thenAnswer Single.error<Throwable>(UnknownHostException())
         }
 
-        listViewModel.fetchRepos()
+        repoListViewModel.fetchRepos()
         verify(apiStateObserver).onChanged(ApiResponseState.LOADING)
         verify(apiStateObserver).onChanged(ApiResponseState.FAILED)
     }

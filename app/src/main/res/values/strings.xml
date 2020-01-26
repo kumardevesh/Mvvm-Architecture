@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">TargetAssignment</string>
     <string name="trending">Trending</string>
+    <string name="error_message">Something went wrong ..</string>
+    <string name="alien_message">An alien is probably blocking your signal.</string>
+    <string name="retry">RETRY</string>
 
 </resources>

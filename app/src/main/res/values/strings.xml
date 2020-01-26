@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">TargetAssignment</string>
-    <string name="oops_message">Oops,Something went wrong</string>
-    <string name="cache_message">Something went wrong , showing cached result</string>
-    <string name="search_user_name">Search User</string>
+    <string name="trending">Trending</string>
 
 </resources>

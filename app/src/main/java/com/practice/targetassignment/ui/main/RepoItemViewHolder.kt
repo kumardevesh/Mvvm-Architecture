@@ -2,8 +2,8 @@ package com.practice.targetassignment.ui.main
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.practice.targetassignment.model.Repo
+import com.practice.targetassignment.util.loadCircularImage
 import kotlinx.android.synthetic.main.view_repo_list_item.view.*
 
 class RepoItemViewHolder(
@@ -15,10 +15,8 @@ class RepoItemViewHolder(
         itemView.setOnClickListener {
             repoSelectedListener.repoSelected(repo)
         }
-        itemView.tv_description.text = repo.repoDescription?.description
-        itemView.tv_name.text = repo.repoDescription?.name
-        itemView.tv_user_name.text = repo.name
-        Glide.with(itemView.context).load(repo.avatar).into(itemView.iv_avatar)
-
+        itemView.tv_author_name.text = repo.author
+        itemView.tv_repo_name.text = repo.name
+        itemView.iv_avatar.loadCircularImage(repo.avatar)
     }
 }

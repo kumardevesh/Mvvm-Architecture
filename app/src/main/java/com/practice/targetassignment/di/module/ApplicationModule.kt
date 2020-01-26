@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import com.practice.targetassignment.di.util.RxSingleSchedulers
 import com.practice.targetassignment.repository.RepoService
-import com.practice.targetassignment.util.SchedulerProvider
 import com.practice.targetassignment.util.SharedPrefUtil
 import dagger.Module
 import dagger.Provides
@@ -17,7 +16,7 @@ import javax.inject.Singleton
 @Module(includes = [ViewModelModule::class])
 class ApplicationModule {
 
-    private val BASE_URL = "https://github-trending-api.now.sh/"
+    private val BASEURL = "https://github-trending-api.now.sh/"
 
 
     @Provides
@@ -29,7 +28,7 @@ class ApplicationModule {
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit {
-        return Retrofit.Builder().baseUrl(BASE_URL)
+        return Retrofit.Builder().baseUrl(BASEURL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

@@ -18,7 +18,8 @@ data class Repo(
     @SerializedName("forks")
     val forks: Int = 0,
     @SerializedName("language")
-    val language: String?=null
+    val language: String? = null,
+    var isExpandedState: Boolean = false
 )
 
 

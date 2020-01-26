@@ -1,6 +1,7 @@
 package com.practice.targetassignment.ui.main
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,7 +9,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.practice.targetassignment.R
 import com.practice.targetassignment.base.BaseActivity
 import com.practice.targetassignment.model.ApiResponseState
-import com.practice.targetassignment.model.Repo
 import com.practice.targetassignment.util.ViewModelFactory
 import com.practice.targetassignment.util.gone
 import com.practice.targetassignment.util.show
@@ -92,8 +92,15 @@ class RepoListActivity : BaseActivity(), RepoSelectedListener, SwipeRefreshLayou
         })
     }
 
-    override fun repoSelected(repo: Repo) {
+    override fun repoSelected(position: Int) {
+        adapter?.updateExpandedPosition(position)
 
+        if (position + 1 == adapter?.itemCount) {
+            Handler().postDelayed({
+                recyclerView.scrollBy(0,300)
+            },16)
+
+        }
     }
 
     override fun onRefresh() {

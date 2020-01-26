@@ -4,7 +4,6 @@ import android.app.Application
 import com.practice.targetassignment.base.BaseApplication
 import com.practice.targetassignment.di.module.ActivityBindingModule
 import com.practice.targetassignment.di.module.ApplicationModule
-import com.practice.targetassignment.di.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
